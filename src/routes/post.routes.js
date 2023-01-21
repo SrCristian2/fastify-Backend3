@@ -25,10 +25,10 @@ export const postRoutes = (fastify, opts, done) => {
   fastify.get("/", postCtrl.listar);
   fastify.get("/:id", postCtrl.listOne);
   fastify.post("/",
-    { schema: postSchema,preHandler: [upload.single("img")] },
+    { schema: postSchema,preValidation: [upload.single("img")] },
     
     postCtrl.add)
   fastify.delete("/:id", postCtrl.delete);
-  fastify.put("/:id", { preHandler: [upload.single("img")] }, postCtrl.update);
+  fastify.put("/:id", { preValidation: [upload.single("img")] }, postCtrl.update);
   done();
 };
